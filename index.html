@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Lyric Viewer - Diwali Edition</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for better readability and structure */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1e0e45; /* Deep purple-blue for night sky */
+            color: #fef08a; /* Golden yellow text */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            
+            /* Diwali background patterns */
+            background-image: 
+                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 60 60"%3E%3Cg fill="%23f97316" fill-opacity="0.1"%3E%3Cpath d="M12 0L0 12h24L12 0zm12 60L36 48H12l12 12zm0-24L12 36h24l0-12zM36 0L24 12h24L36 0zm-12 60L36 48h-24L12 60zm0-24L36 36h-24l0-12zM0 12L12 0v24L0 12zm0 36L12 24v24L0 36zm60-24L48 0v24l12-12zm0 36L48 24v24l12-12zM24 0L12 12h24L24 0zm12 60L24 48h24l12 12zm0-24L48 36h-24l0-12zM0 48L12 36v24L0 48zm60-12L48 24v24l12-12zM48 0L36 12h24L48 0zm-24 60L36 48h-24L12 60z"/%3E%3C/g%3E%3C/svg%3E'), /* Fireworks/abstract pattern */
+                url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40"%3E%3Cpath fill="%23fcd34d" fill-opacity="0.15" d="M0 0h20v20H0zM20 20h20v20H20z"/%3E%3Ccircle fill="%23f97316" fill-opacity="0.1" cx="20" cy="20" r="8"/%3E%3C/svg%3E'); /* Diya/dot pattern */
+            background-size: 80px, 120px; /* Adjust size of patterns */
+            background-repeat: repeat;
+        }
+        .lyric-content {
+            white-space: pre-wrap; /* Preserves whitespace and line breaks from pasted lyrics */
+            line-height: 1.8;
+            color: #fef08a; /* Golden yellow for lyrics */
+        }
+        .story-content p {
+            color: #fef08a; /* Golden yellow for story text */
+            line-height: 1.8;
+            margin-bottom: 1.5rem; /* Space between paragraphs */
+            text-align: justify;
+        }
+        .active-tab {
+            background-color: #fbbf24 !important; /* Vibrant gold for active tab */
+            color: #1e0e45 !important; /* Deep text for active tab */
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.7); /* Gold shadow */
+            transform: translateY(-2px);
+        }
+        .bg-diwali-main {
+            background: linear-gradient(135deg, #2a0f5a, #1a0e45); /* Subtle gradient for main content */
+            border: 2px solid #fbbf24; /* Gold border */
+        }
+        .border-diwali-accent {
+            border-color: #fbbf24; /* Gold accent border */
+        }
+        .hover-diwali-button:hover {
+            background-color: #fbbf24; /* Gold on hover */
+            color: #1e0e45; /* Dark text on hover */
+            box-shadow: 0 4px 15px rgba(251, 191, 36, 0.7);
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="max-w-4xl mx-auto w-full">
+        <!-- Header --><h1 class="text-4xl sm:text-5xl font-extrabold mb-6 text-center text-[#f97316] drop-shadow-lg">
+            <span class="text-[#fbbf24]">Happy</span> Diwali! <span class="text-[#fbbf24]">FiGS</span> Band Set List
+        </h1>
+
+        <!-- Navigation Tabs --><div id="tabs" class="flex flex-wrap justify-center space-y-3 sm:space-y-0 sm:space-x-4 mb-8 p-3 bg-diwali-main rounded-xl shadow-lg">
+            <button data-song="0" class="tab-button bg-[#3a3a5a] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50">
+                Intro
+            </button>
+            <button data-song="1" class="tab-button bg-[#3a3a5a] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50">
+                Song 1
+            </button>
+            <button data-song="2" class="tab-button bg-[#3a3a5a] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50">
+                Song 2
+            </button>
+            <button data-song="3" class="tab-button bg-[#3a3a5a] text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50">
+                Song 3
+            </button>
+        </div>
+
+        <!-- Content Area --><div class="bg-diwali-main p-6 sm:p-10 rounded-xl shadow-2xl min-h-[400px]">
+            <!-- INTRO CONTENT --><div id="song-0" class="lyric-panel">
+                <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">The Story of Diwali</h2>
+                <div class="story-content text-lg">
+                    <p>
+                        Diwali, known as the "Festival of Lights," is one of the most important festivals in Hinduism. It celebrates the profound victory of light over darkness, good over evil, and knowledge over ignorance.
+                    </p>
+                    <p>
+                        The most famous story behind Diwali is the return of Lord Rama to his kingdom of Ayodhya after 14 long years of exile. Along with his wife Sita and his loyal brother Lakshmana, he was forced to leave his kingdom and live in the forest.
+                    </p>
+                    <p>
+                        During this exile, the demon king Ravana of Lanka abducted Sita. Lord Rama, with the help of the mighty monkey god Hanuman and his army, fought a great battle against Ravana and defeated him, rescuing Sita and restoring righteousness.
+                    </p>
+                    <p>
+                        To celebrate the triumphant return of their beloved king, the people of Ayodhya lit rows of clay lamps (diyas) to illuminate the path and welcome them home. This beautiful tradition continues today, with people lighting diyas and setting off fireworks to signify the timeless triumph of good and light.
+                    </p>
+                </div>
+            </div>
+
+            <!-- SONG 1 CONTENT --><div id="song-1" class="lyric-panel hidden">
+                <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Papa Kehte Hain</h2>
+                <pre class="lyric-content text-lg">
+(Chorus)
+Papa kehte hain bada naam karega
+Beta humara aisa kaam karega
+Magar yeh toh koi na jaane
+Ki meri manzil hai kahan
+(Chorus)
+Papa kehte hain bada naam karega
+Beta humara aisa kaam karega
+Magar yeh toh koi na jaane
+Ki meri manzil hai kahan
+Papa kehte hain bada naam karega
+
+(Verse 1)
+Baithe hain mil ke sab yaar apne
+Sabke dilon mein armaan yeh hai
+Baithe hain mil ke sab yaar apne
+Sabke dilon mein armaan yeh hai
+Woh zindagi mein kal kya banega
+Har ek nazar ka sapna yeh hai
+Koi engineer ka kaam karega
+Business mein koi apna naam karega
+Magar yeh toh koi na jaane
+Ki meri manzil hai kahan
+(Chorus Snippet)
+Papa kehte hain bada naam karega
+
+(Verse 2)
+Mera toh sapna hai ek chehra
+Dekhe jo usko jhoome bahaar
+Mera toh sapna hai ek chehra
+Dekhe jo usko jhoome bahaar
+Gaalon mein khilti kaliyon ka mausam
+Aankhon mein jaadoo hothon mein pyaar
+Banda yeh khoobsurat kaam karega
+Dil ki duniya mein apna naam karega
+Meri nazar se dekho toh yaaron
+Ki meri manzil hai kahan
+(Outro Chorus)
+Papa kehte hain bada naam karega
+                </pre>
+            </div>
+
+            <!-- SONG 2 CONTENT --><div id="song-2" class="lyric-panel hidden">
+                <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Gulabi Aankhen</h2>
+                <pre class="lyric-content text-lg">
+(Chorus)
+Gulabi aankhen jo teri dekhi, Sharabi yeh dil ho gaya
+Sambhalo mujhko, O mere yaaron, Sambhalna mushkil ho gaya
+Gulabi aankhen jo teri dekhi, Sharabi yeh dil ho gaya
+
+(Verse 1)
+Dil mein mere khwaab tere
+Tasveer jaise ho deewar pe
+Tujhpe fida main kyun hua
+Aata hai gussa mujhe pyaar pe
+Main lut gaya, maan ke dil ka kaha
+Main kahin ka na raha, kya kahun main, Dilruba?
+Bura yeh jaadoo teri aankhon ka, yeh mera qaatil ho gaya
+(Chorus Snippet)
+Gulabi aankhen jo teri dekhi, Sharabi yeh dil ho gaya
+
+(Verse 2)
+Maine sada chaha yahi, daaman bacha loon haseeno se main
+Teri kasam, khwaabon mein bhi bachta phira naazneeno se main
+Tauba magar mil gayi tujhse nazar
+Mil gaya dard-e-jigar, sun zara, O bekhabar
+Zara sa hans ke jo dekha tune, main tera bismil ho gaya
+(Outro Chorus)
+Gulabi aankhen jo teri dekhi, Sharabi yeh dil ho gaya
+Sambhalo mujhko, O mere yaaron, Sambhalna mushkil ho gaya
+                </pre>
+            </div>
+
+            <!-- SONG 3 CONTENT --><div id="song-3" class="lyric-panel hidden">
+                <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Yellow</h2>
+                <pre class="lyric-content text-lg">
+(Verse 1)
+Look at the stars
+Look how they shine for you
+And everything you do
+Yeah, they were all yellow
+
+(Verse 2)
+I came along
+I wrote a song for you
+And all the things you do
+And it was called "Yellow"
+
+(Verse 3)
+So then I took my turn
+Oh, what a thing to have done
+And it was all yellow
+
+(Chorus)
+Your skin, oh yeah, your skin, and bones
+Turn into something beautiful
+And you know, you know I love you so
+You know I love you so
+
+(Verse 4)
+I swam across
+I jumped across for you
+Oh, what a thing to do
+'Cause you were all yellow
+
+(Verse 5)
+I drew a line
+I drew a line for you
+Oh, what a thing to do
+And it was all yellow
+
+(Chorus)
+And your skin, oh yeah, your skin, and bones
+Turn into something beautiful
+And you know, for you, I'd bleed myself dry
+For you, I'd bleed myself dry
+
+(Outro)
+It's true
+Look how they shine for you
+Look how they shine for you
+Look how they shine for
+Look how they shine for you
+Look how they shine
+Look at the stars
+Look how they shine for you
+And all the things that you do
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for handling the tab switching logic
+        
+        const lyricPanels = document.querySelectorAll('.lyric-panel');
+        const tabButtons = document.querySelectorAll('.tab-button');
+
+        /**
+         * Shows the lyric panel for the given song index and updates the active button style.
+         * @param {number} songIndex - The 0-based index of the song to show (0-3).
+         */
+        function showSong(songIndex) {
+            // Hide all lyric panels
+            lyricPanels.forEach(panel => {
+                panel.classList.add('hidden');
+            });
+
+            // Deactivate all buttons
+            tabButtons.forEach(button => {
+                button.classList.remove('active-tab');
+            });
+
+            // Show the selected panel
+            const activePanel = document.getElementById(`song-${songIndex}`);
+            if (activePanel) {
+                activePanel.classList.remove('hidden');
+            }
+
+            // Activate the selected button
+            const activeButton = document.querySelector(`.tab-button[data-song="${songIndex}"]`);
+            if (activeButton) {
+                activeButton.classList.add('active-tab');
+            }
+        }
+
+        // Add event listeners to all tab buttons
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const songIndex = button.getAttribute('data-song');
+                showSong(parseInt(songIndex));
+            });
+        });
+
+        // Initialize the view to show the first song (Intro) on load
+        window.onload = () => {
+            showSong(0);
+        };
+    </script>
+</body>
+</html>
+
+
