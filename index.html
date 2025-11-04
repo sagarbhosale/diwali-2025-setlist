@@ -35,10 +35,10 @@
             text-align: justify;
         }
         .active-tab {
+            /* Removed transform: translateY(-2px); to ensure buttons are all the same height */
             background-color: #fbbf24 !important; /* Vibrant gold for active tab */
             color: #1e0e45 !important; /* Deep text for active tab */
             box-shadow: 0 4px 15px rgba(251, 191, 36, 0.7); /* Gold shadow */
-            transform: translateY(-2px);
         }
         .bg-diwali-main {
             background: linear-gradient(135deg, #2a0f5a, #1a0e45); /* Subtle gradient for main content */
@@ -56,13 +56,13 @@
 </head>
 <body class="p-4 sm:p-8">
 
-    <div class="max-w-4xl mx-auto w-full">
+    <div class="max-w-4x2 mx-auto w-full">
         <!-- Header --><h1 class="text-4xl sm:text-5xl font-extrabold mb-6 text-center text-[#f97316] drop-shadow-lg">
             <span class="text-[#fbbf24]">Happy</span> Diwali! <span class="text-[#fbbf24]">FiGS</span> Band Set List
         </h1>
 
         <!-- Navigation Tabs --><div id="tabs" class="flex flex-wrap justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8 p-4 bg-diwali-main rounded-xl shadow-lg">
-            <!-- Increased width from w-28 to w-32 on all buttons to ensure consistent height and prevent text wrapping. -->
+            <!-- All buttons use w-32 and py-4 for consistent dimensions -->
             <button data-song="0" class="tab-button bg-[#3a3a5a] text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50 w-32">
                 Intro
             </button>
