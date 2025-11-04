@@ -35,7 +35,7 @@
             text-align: justify;
         }
         .active-tab {
-            /* Removed transform: translateY(-2px); to ensure buttons are all the same height */
+            /* Ensures buttons are all the same height and alignment */
             background-color: #fbbf24 !important; /* Vibrant gold for active tab */
             color: #1e0e45 !important; /* Deep text for active tab */
             box-shadow: 0 4px 15px rgba(251, 191, 36, 0.7); /* Gold shadow */
@@ -61,7 +61,8 @@
             <span class="text-[#fbbf24]">Happy</span> Diwali! <span class="text-[#fbbf24]">FiGS</span> Band Set List
         </h1>
 
-        <!-- Navigation Tabs --><div id="tabs" class="flex flex-wrap justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8 p-4 bg-diwali-main rounded-xl shadow-lg">
+        <!-- Navigation Tabs -->
+        <div id="tabs" class="flex flex-wrap justify-center space-y-4 sm:space-y-0 sm:space-x-4 mb-8 p-4 bg-diwali-main rounded-xl shadow-lg">
             <!-- All buttons use w-32 and py-4 for consistent dimensions -->
             <button data-song="0" class="tab-button bg-[#3a3a5a] text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50 w-32">
                 Intro
@@ -75,10 +76,15 @@
             <button data-song="3" class="tab-button bg-[#3a3a5a] text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50 w-32">
                 Song 3
             </button>
+            <button data-song="4" class="tab-button bg-[#3a3a5a] text-white font-semibold py-4 px-6 rounded-lg transition-all duration-300 hover-diwali-button focus:outline-none focus:ring-4 focus:ring-[#fbbf24]/50 w-32">
+                Song 4
+            </button>
         </div>
 
-        <!-- Content Area --><div class="bg-diwali-main p-6 sm:p-10 rounded-xl shadow-2xl min-h-[400px]">
-            <!-- INTRO CONTENT --><div id="song-0" class="lyric-panel">
+        <!-- Content Area -->
+        <div class="bg-diwali-main p-6 sm:p-10 rounded-xl shadow-2xl min-h-[400px]">
+            <!-- INTRO CONTENT -->
+            <div id="song-0" class="lyric-panel">
                 <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">The Story of Diwali</h2>
                 <div class="story-content text-lg">
                     <p>
@@ -96,7 +102,8 @@
                 </div>
             </div>
 
-            <!-- SONG 1 CONTENT --><div id="song-1" class="lyric-panel hidden">
+            <!-- SONG 1 CONTENT -->
+            <div id="song-1" class="lyric-panel hidden">
                 <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Papa Kehte Hain</h2>
                 <pre class="lyric-content text-lg">
 (Chorus)
@@ -141,7 +148,8 @@ Papa kehte hain bada naam karega
                 </pre>
             </div>
 
-            <!-- SONG 2 CONTENT --><div id="song-2" class="lyric-panel hidden">
+            <!-- SONG 2 CONTENT -->
+            <div id="song-2" class="lyric-panel hidden">
                 <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Gulabi Aankhen</h2>
                 <pre class="lyric-content text-lg">
 (Chorus)
@@ -172,7 +180,8 @@ Sambhalo mujhko, O mere yaaron, Sambhalna mushkil ho gaya
                 </pre>
             </div>
 
-            <!-- SONG 3 CONTENT --><div id="song-3" class="lyric-panel hidden">
+            <!-- SONG 3 CONTENT -->
+            <div id="song-3" class="lyric-panel hidden">
                 <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Yellow</h2>
                 <pre class="lyric-content text-lg">
 (Verse 1)
@@ -228,6 +237,69 @@ Look how they shine for you
 And all the things that you do
                 </pre>
             </div>
+
+            <!-- SONG 4 CONTENT - NEWLY ADDED -->
+            <div id="song-4" class="lyric-panel hidden">
+                <h2 class="text-3xl font-bold mb-4 border-b border-diwali-accent pb-2 text-[#f97316]">Thinking Out Loud (Ed Sheeran)</h2>
+                <pre class="lyric-content text-lg">
+(Verse 1)
+When your legs don't work like they used to before
+And I can't sweep you off of your feet
+Will your mouth still remember the taste of my love?
+Will your eyes still smile from your cheeks?
+
+(Pre-Chorus)
+And darling, I will be loving you 'til we're 70
+And baby, my heart could still fall as hard at 23
+
+(Chorus)
+And I'm thinking 'bout how people fall in love in mysterious ways
+Maybe just the touch of a hand
+Oh, me, I fall in love with you every single day
+And I just wanna tell you I am
+
+(Verse 2)
+When my hair's all but gone and my memory fades
+And the crowds don't remember my name
+When my hands don't play the strings the same way
+I know you will still love me the same
+
+(Pre-Chorus)
+'Cause darling, I will be loving you 'til we're 70
+And baby, my heart could still fall as hard at 23
+
+(Chorus)
+And I'm thinking 'bout how people fall in love in mysterious ways
+Maybe just the touch of a hand
+Oh, me, I fall in love with you every single day
+And I just wanna tell you I am
+So honey now
+
+(Bridge)
+Take me into your loving arms
+Kiss me under the light of a thousand stars
+Place your head on my beating heart
+I'm thinking out loud
+Maybe we found love right where we are
+
+(Guitar Solo) (Play slowly and softly)
+
+(Chorus)
+And I'm thinking 'bout how people fall in love in mysterious ways
+Maybe just the touch of a hand
+Oh, me, I fall in love with you every single day
+And I just wanna tell you I am
+
+(Outro)
+Take me into your loving arms
+Kiss me under the light of a thousand stars
+Oh, darling, place your head on my beating heart
+I'm thinking out loud
+Maybe we found love right where we are
+Oh, maybe we found love right where we are
+And we found love right where we are
+                </pre>
+            </div>
         </div>
     </div>
 
@@ -239,7 +311,7 @@ And all the things that you do
 
         /**
          * Shows the lyric panel for the given song index and updates the active button style.
-         * @param {number} songIndex - The 0-based index of the song to show (0-3).
+         * @param {number} songIndex - The 0-based index of the song to show (0-4).
          */
         function showSong(songIndex) {
             // Hide all lyric panels
@@ -269,6 +341,7 @@ And all the things that you do
         tabButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const songIndex = button.getAttribute('data-song');
+                // The JS handles the new 0-4 indices automatically, no change needed here.
                 showSong(parseInt(songIndex));
             });
         });
